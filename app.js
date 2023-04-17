@@ -2,8 +2,9 @@ const express = require("express");
 const moment = require("moment");
 const app = express();
 
+
 app.use(express.static("public"));
-// Middleware to verify the time of the request
+// Middleware 
 const checkTime = (req, res, next) => {
   const now = moment();
   const day = now.day();
@@ -16,10 +17,10 @@ const checkTime = (req, res, next) => {
   }
 };
 
-// Set the view engine to EJS
+// engine EJS
 app.set("view engine", "ejs");
 
-// Define the routes
+// the routes
 app.get("/", checkTime, (req, res) => {
   res.render("homepage");
 });
@@ -31,6 +32,7 @@ app.get("/services", checkTime, (req, res) => {
 app.get("/contact", checkTime, (req, res) => {
   res.render("contact");
 });
+
 
 // Start the server
 app.listen(3000, () => {
